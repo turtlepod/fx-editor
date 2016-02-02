@@ -69,16 +69,13 @@ If a little trickier, you need to press "Enter" twice 2 times. That's 4 times. T
 
 == Changelog ==
 
-= 1.0.0 - 7 Jan 2015 =
-* Add readme. Change description.
-
-= 0.1.0 =
-* First relase.
+= 1.0.0 - 2 Feb 2015 =
+* Initial release.
 
 == Upgrade Notice ==
 
 = 1.0.0 =
-Maintenance relase.
+1st version
 
 == Other Notes ==
 
