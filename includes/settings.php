@@ -97,22 +97,22 @@ class fx_Editor_Settings{
 		$new_data = array();
 
 		/* Boxes */
-		$new_data['boxes'] = isset( $data['boxes'] ) ? true : false ;
+		$new_data['boxes'] = ( isset( $data['boxes'] ) && 1 == $data['boxes'] ) ? true : false ;
 
 		/* Buttons */
-		$new_data['buttons'] = isset( $data['buttons'] ) ? true : false ;
+		$new_data['buttons'] = ( isset( $data['buttons'] ) && 1 == $data['buttons'] ) ? true : false ;
 
 		/* Columns */
-		$new_data['columns'] = isset( $data['columns'] ) ? true : false ;
+		$new_data['columns'] = ( isset( $data['columns'] ) && 1 == $data['columns'] ) ? true : false ;
 
 		/* Page Break */
-		$new_data['wp_page'] = isset( $data['wp_page'] ) ? true : false ;
+		$new_data['wp_page'] = ( isset( $data['wp_page'] ) && 1 == $data['wp_page'] ) ? true : false ;
 
 		/* Highlights */
-		$new_data['backcolor'] = isset( $data['backcolor'] ) ? true : false ;
+		$new_data['backcolor'] = ( isset( $data['backcolor'] ) && 1 == $data['backcolor'] ) ? true : false ;
 
 		/* P to BR */
-		$new_data['p_to_br'] = isset( $data['p_to_br'] ) ? true : false ;
+		$new_data['p_to_br'] = ( isset( $data['p_to_br'] ) && 1 == $data['p_to_br'] ) ? true : false ;
 
 		return $new_data;
 	}
