@@ -3,7 +3,7 @@
  * Plugin Name: f(x) Editor
  * Plugin URI: http://genbu.me/plugins/fx-editor/
  * Description: Power-up Your WordPress Visual Editor with Boxes, Buttons, Columns, and more... (No Shortcodes)
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: David Chandra Purnama
  * Author URI: http://shellcreeper.com/
  *
@@ -15,12 +15,12 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @author David Chandra Purnama <david@genbu.me>
- * @copyright Copyright (c) 2015, Genbu Media
+ * @copyright Copyright (c) 2016, Genbu Media
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
 /* Plugin Version. */
-define( 'FX_EDITOR_VERSION', '1.0.0' );
+define( 'FX_EDITOR_VERSION', '1.0.1' );
 
 /* Path to plugin directory. */
 define( 'FX_EDITOR_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
@@ -40,35 +40,63 @@ function fx_editor_load(){
 	/* Language */
 	load_plugin_textdomain( 'fx-editor', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-	/* Load Functions  */
-	require_once( FX_EDITOR_PATH . 'includes/functions.php' );
+	/* WordPress version */
+	global $wp_version;
 
-	/* Settings Page  */
-	if( is_admin() ){
-		require_once( FX_EDITOR_PATH . 'includes/settings.php' );
-		$fx_editor_settings = new fx_Editor_Settings();
+	/* Minimum WP version 4.0 */
+	if ( version_compare( $wp_version, '4.0', '>=' ) ) {
+
+		/* Load Functions  */
+		require_once( FX_EDITOR_PATH . 'includes/functions.php' );
+
+		/* Settings Page  */
+		if( is_admin() ){
+			require_once( FX_EDITOR_PATH . 'includes/settings.php' );
+			$fx_editor_settings = new fx_Editor_Settings();
+		}
+
+		/* Visual Editor  */
+		require_once( FX_EDITOR_PATH . 'includes/mce-editor.php' );
+		$fx_editor = new fx_Editor();
 	}
+}
 
-	/* Visual Editor Functions  */
-	require_once( FX_EDITOR_PATH . 'includes/mce-editor.php' );
-	$fx_editor = new fx_Editor();
+/* Activation hook
+------------------------------------------ */
 
+/* Register activation hook. */
+register_activation_hook( __FILE__, 'fx_editor_activation' );
+
+
+/**
+ * Runs only when the plugin is activated.
+ * @since 0.1.0
+ */
+function fx_editor_activation() {
+	global $wp_version;
+
+	/* Minimum WP version 4.0 */
+	if ( version_compare( $wp_version, '4.0', '<' ) ) {
+		set_transient( 'fx_editor_min_wp_notice', true, 5 );
+	}
 }
 
 
+/* Add admin notice */
+add_action( 'admin_notices', 'fx_editor_admin_notice' );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Admin Notice on Activation.
+ * @since 0.1.0
+ */
+function fx_editor_admin_notice(){
+	if( get_transient( 'fx_editor_min_wp_notice' ) ){
+		global $wp_version;
+		?>
+		<div class="error notice is-dismissible">
+			<p><?php echo sprintf( _x( 'You need use at least WordPress version 4.0 to use <strong>f(x) Editor Plugin</strong>. Currently you are using version %s', 'admin notice' , 'fx-editor' ), $wp_version ); ?></p>
+		</div>
+		<?php
+		delete_transient( 'fx_editor_min_wp_notice' );
+	}
+}
