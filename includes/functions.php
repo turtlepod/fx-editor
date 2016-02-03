@@ -47,21 +47,3 @@ function fx_editor_is_custom_feature_active(){
 	}
 	return apply_filters( 'fx_editor_is_custom_feature_active', false );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

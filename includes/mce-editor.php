@@ -5,7 +5,6 @@
 /* Do not access this file directly */
 if ( ! defined( 'WPINC' ) ) { die; }
 
-
 /**
  * f(x) Editor Class
  * @since 0.1.0
@@ -59,24 +58,17 @@ class fx_Editor{
 	 */
 	public function register_mce_external_plugins( $plugins ){
 
-		/* tinyMCE version */
-		global $tinymce_version;
-
-		/* Only for WP 3.9 with tinyMCE 4 */
-		if ( version_compare( $tinymce_version, '400', '>=' ) ) {
-
-			/* Boxes */
-			if( fx_editor_get_option( 'boxes', false ) ){
-				$plugins['wpe_addon_boxes'] = FX_EDITOR_URL . "js/mce-plugin-boxes.js";
-			}
-			/* Buttons */
-			if( fx_editor_get_option( 'buttons', false ) ){
-				$plugins['wpe_addon_buttons'] = FX_EDITOR_URL . "js/mce-plugin-buttons.js";
-			}
-			/* Columns */
-			if( fx_editor_get_option( 'columns', false ) ){
-				$plugins['wpe_addon_columns'] = FX_EDITOR_URL . "js/mce-plugin-columns.js";
-			}
+		/* Boxes */
+		if( fx_editor_get_option( 'boxes', false ) ){
+			$plugins['wpe_addon_boxes'] = FX_EDITOR_URL . "js/mce-plugin-boxes.js";
+		}
+		/* Buttons */
+		if( fx_editor_get_option( 'buttons', false ) ){
+			$plugins['wpe_addon_buttons'] = FX_EDITOR_URL . "js/mce-plugin-buttons.js";
+		}
+		/* Columns */
+		if( fx_editor_get_option( 'columns', false ) ){
+			$plugins['wpe_addon_columns'] = FX_EDITOR_URL . "js/mce-plugin-columns.js";
 		}
 
 		return $plugins;

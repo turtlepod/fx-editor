@@ -58,8 +58,8 @@ class fx_Editor_Settings{
 		/* Create Settings Sub-Menu */
 		add_submenu_page( 
 			'options-general.php', // parent slug
-			_x( 'Editor Settings', 'settings page', 'fx-login-notification' ), // page title
-			_x( 'Editor', 'settings page', 'fx-login-notification' ), // menu title
+			_x( 'Editor Settings', 'settings page', 'fx-editor' ), // page title
+			_x( 'Editor', 'settings page', 'fx-editor' ), // menu title
 			'manage_options',  // capability
 			$this->settings_slug, // page slug
 			array( $this, 'settings_page' ) // callback functions
@@ -75,7 +75,7 @@ class fx_Editor_Settings{
 	?>
 		<div class="wrap">
 
-			<h1><?php _ex( 'Editor Settings', 'settings page', 'fx-login-notification' ); ?></h1>
+			<h1><?php _ex( 'Editor Settings', 'settings page', 'fx-editor' ); ?></h1>
 
 			<form method="post" action="options.php">
 				<?php settings_fields( $this->options_group ); ?>

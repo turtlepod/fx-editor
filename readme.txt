@@ -1,10 +1,10 @@
 === f(x) Editor ===
 Contributors: turtlepod
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TT23LVNKA3AU2
-Tags: comments, spam
-Requires at least: 3.9
+Tags: tinymce, editor, wp editor, visual editor, boxes, buttons, columns
+Requires at least: 4.0
 Tested up to: 4.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,10 +69,18 @@ If a little trickier, you need to press "Enter" twice 2 times. That's 4 times. T
 
 == Changelog ==
 
+= 1.0.1 - 3 Feb 2015 =
+* Update language stings, language POT file.
+* Check version using WP version instead of tinyMCE version. (use min 4.3)
+* Add admin notice for minimum requirements.
+
 = 1.0.0 - 2 Feb 2015 =
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Minor fix. Language files.
 
 = 1.0.0 =
 1st version

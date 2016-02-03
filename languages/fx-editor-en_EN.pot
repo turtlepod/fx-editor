@@ -1,0 +1,74 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: f(x) Login Customizer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-03 17:02+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: dave <david.warna@gmail.com>\n"
+"Language-Team: David Chandra P. <david@shellcreeper.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;esc_attr_e;esc_attr__;esc_html_e;esc_html__;_x;"
+"_n;_x:1,2c;_n:1,2;_ex\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: fx-editor.php:97
+#, php-format
+msgctxt "admin notice"
+msgid ""
+"You need use at least WordPress version 4.0 to use <strong>f(x) Editor "
+"Plugin</strong>. Currently you are using version %s"
+msgstr ""
+
+#: includes/settings.php:61
+msgctxt "settings page"
+msgid "Editor Settings"
+msgstr ""
+
+#: includes/settings.php:62
+msgctxt "settings page"
+msgid "Editor"
+msgstr ""
+
+#: includes/settings.php:78
+msgid "Editor Settings"
+msgstr ""
+
+#: includes/settings.php:144
+msgctxt "settings page"
+msgid "Custom features"
+msgstr ""
+
+#: includes/settings.php:153
+msgctxt "settings page"
+msgid "Basic features"
+msgstr ""
+
+#: includes/settings.php:168
+msgid "Boxes."
+msgstr ""
+
+#: includes/settings.php:170
+msgid "Buttons."
+msgstr ""
+
+#: includes/settings.php:172
+msgid "Columns."
+msgstr ""
+
+#: includes/settings.php:184
+msgid "Page break button."
+msgstr ""
+
+#: includes/settings.php:186
+msgid "Background color (text highlight)."
+msgstr ""
+
+#: includes/settings.php:188
+msgid "Switch paragraph to line break (not recommended)."
+msgstr ""
