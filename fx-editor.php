@@ -1,26 +1,19 @@
 <?php
 /**
  * Plugin Name: f(x) Editor
- * Plugin URI: http://genbu.me/plugins/fx-editor/
- * Description: Power-up Your WordPress Visual Editor with Boxes, Buttons, Columns, and more... (No Shortcodes)
- * Version: 1.0.1
+ * Plugin URI: http://genbumedia.com/plugins/fx-editor/
+ * Description: Power-up Your WordPress Visual Editor with Boxes, Buttons, Columns, and more... (No Shortcodes).
+ * Version: 1.1.0
  * Author: David Chandra Purnama
  * Author URI: http://shellcreeper.com/
- *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
- * General Public License version 2, as published by the Free Software Foundation.  You may NOT assume 
- * that you can use any other version of the GPL.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
- * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @author David Chandra Purnama <david@genbu.me>
- * @copyright Copyright (c) 2016, Genbu Media
- * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * License: GPLv2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: fx-editor
+ * Domain Path: /languages
 **/
 
 /* Plugin Version. */
-define( 'FX_EDITOR_VERSION', '1.0.1' );
+define( 'FX_EDITOR_VERSION', '1.1.0' );
 
 /* Path to plugin directory. */
 define( 'FX_EDITOR_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
@@ -58,6 +51,9 @@ function fx_editor_load(){
 		/* Visual Editor  */
 		require_once( FX_EDITOR_PATH . 'includes/mce-editor.php' );
 		$fx_editor = new fx_Editor();
+
+		/* Content Only Filter  */
+		require_once( FX_EDITOR_PATH . 'includes/filters.php' );
 	}
 }
 
@@ -79,8 +75,18 @@ function fx_editor_activation() {
 	if ( version_compare( $wp_version, '4.0', '<' ) ) {
 		set_transient( 'fx_editor_min_wp_notice', true, 5 );
 	}
+
+	/* Uninstall plugin */
+	register_uninstall_hook( __FILE__, 'fx_editor_uninstall' );
 }
 
+/**
+ * Delete Option when user uninstall (delete) plugin.
+ * @since 1.1.0
+ */
+function fx_editor_uninstall(){
+	delete_option( 'fx-editor' );
+}
 
 /* Add admin notice */
 add_action( 'admin_notices', 'fx_editor_admin_notice' );

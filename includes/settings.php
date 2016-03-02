@@ -58,8 +58,8 @@ class fx_Editor_Settings{
 		/* Create Settings Sub-Menu */
 		add_submenu_page( 
 			'options-general.php', // parent slug
-			_x( 'Editor Settings', 'settings page', 'fx-editor' ), // page title
-			_x( 'Editor', 'settings page', 'fx-editor' ), // menu title
+			_x( 'Visual Editor Settings', 'settings page', 'fx-editor' ), // page title
+			_x( 'Visual Editor', 'settings page', 'fx-editor' ), // menu title
 			'manage_options',  // capability
 			$this->settings_slug, // page slug
 			array( $this, 'settings_page' ) // callback functions
@@ -114,6 +114,9 @@ class fx_Editor_Settings{
 		/* P to BR */
 		$new_data['p_to_br'] = ( isset( $data['p_to_br'] ) && 1 == $data['p_to_br'] ) ? true : false ;
 
+		/* Only in main content editor */
+		$new_data['content_only'] = ( isset( $data['content_only'] ) && 1 == $data['content_only'] ) ? true : false ;
+
 		return $new_data;
 	}
 
@@ -156,6 +159,15 @@ class fx_Editor_Settings{
 			'fx_editor_section' // section ID
 		);
 
+		/* Create Setting Field: Options (?) */
+		add_settings_field(
+			'fx_editor_general_options', // field ID
+			_x( 'Options', 'settings page', 'fx-editor' ), // field title 
+			array( $this, 'settings_field_general_options' ), // field callback function
+			$this->settings_slug, // settings page slug
+			'fx_editor_section' // section ID
+		);
+
 	}
 
 	/**
@@ -186,6 +198,18 @@ class fx_Editor_Settings{
 		<p><label for="fx_editor_backcolor"><input type="checkbox" value="1" id="fx_editor_backcolor" name="<?php echo esc_attr( $this->option_name . '[backcolor]' );?>" <?php checked( fx_editor_get_option( 'backcolor', false ) ); ?>> <?php _ex( 'Background color (text highlight).', 'settings page', 'fx-editor' );?></label></p>
 
 		<p><label for="fx_editor_p_to_br"><input type="checkbox" value="1" id="fx_editor_p_to_br" name="<?php echo esc_attr( $this->option_name . '[p_to_br]' );?>" <?php checked( fx_editor_get_option( 'p_to_br', false ) ); ?>> <?php _ex( 'Switch paragraph to line break (not recommended).', 'settings page', 'fx-editor' );?></label></p>
+
+	<?php
+	}
+
+	/**
+	 * Settings Field Callback : General Options
+	 * @since 0.1.0
+	 */
+	public function settings_field_general_options(){
+	?>
+
+		<p><label for="fx_editor_content_only"><input type="checkbox" value="1" id="fx_editor_content_only" name="<?php echo esc_attr( $this->option_name . '[content_only]' );?>" <?php checked( fx_editor_get_option( 'content_only', true ) ); ?>> <?php _ex( 'Only enable features in main "content" editor.', 'settings page', 'fx-editor' );?></label></p>
 
 	<?php
 	}
