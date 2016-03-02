@@ -29,13 +29,15 @@ class fx_Editor{
 		add_filter( 'mce_external_plugins', array( $this, 'register_mce_external_plugins' ) );
 
 		/* Add button to TinyMCE button 1st Row */
-		add_filter( 'mce_buttons', array( $this, 'mce_add_buttons_1' ), 1, 2 );
+		add_filter( 'mce_buttons', array( $this, 'mce_add_buttons_1_wp_page' ), 1, 2 );
 
 		/* Add button to TinyMCE button 2nd Row */
-		add_filter( 'mce_buttons_2', array( $this, 'mce_add_buttons_2' ), 1, 2 );
+		add_filter( 'mce_buttons_2', array( $this, 'mce_add_buttons_2_backcolor' ), 1, 2 );
 
 		/* Add button to TinyMCE button 4th Row */
-		add_filter( 'mce_buttons_4', array( $this, 'mce_add_buttons_4' ), 1, 2 );
+		add_filter( 'mce_buttons_4', array( $this, 'mce_add_buttons_4_boxes' ), 1, 2 );
+		add_filter( 'mce_buttons_4', array( $this, 'mce_add_buttons_4_buttons' ), 1, 2 );
+		add_filter( 'mce_buttons_4', array( $this, 'mce_add_buttons_4_columns' ), 1, 2 );
 
 		/* Only load CSS if custom features (boxes,buttons,columns) are activated. */
 		if( fx_editor_is_custom_feature_active() ){
@@ -75,13 +77,18 @@ class fx_Editor{
 	}
 
 	/**
-	 * Add button to 1st row in editor
+	 * Add button to 1st row in editor: WP Page
 	 * @since 0.1.0
 	 */
-	public function mce_add_buttons_1( $buttons, $editor_id ){
-		if ( 'content' != $editor_id ){
+	public function mce_add_buttons_1_wp_page( $buttons, $editor_id ){
+
+		/* Make editor id filterable. */
+		$wp_page_editor_ids = apply_filters( 'fx_editor_wp_page_editor_ids', false );
+		if( is_array( $wp_page_editor_ids ) && ! in_array( $editor_id, $wp_page_editor_ids ) ){
 			return $buttons;
 		}
+
+		/* Add button */
 		if( fx_editor_get_option( 'wp_page', false ) ){
 			array_splice( $buttons, 13, 0, 'wp_page' );
 		}
@@ -89,14 +96,19 @@ class fx_Editor{
 	}
 
 	/**
-	 * Add button to 2nd row in editor
+	 * Add button to 2nd row in editor: backcolor
 	 * @since 0.1.0
 	 * @link https://shellcreeper.com/how-to-add-background-color-highlight-option-in-wordpress-editor-tinymce/
 	 */
-	public function mce_add_buttons_2( $buttons, $editor_id ){
-		if ( 'content' != $editor_id ){
+	public function mce_add_buttons_2_backcolor( $buttons, $editor_id ){
+
+		/* Make editor id filterable. */
+		$backcolor_editor_ids = apply_filters( 'fx_editor_backcolor_editor_ids', false );
+		if( is_array( $backcolor_editor_ids ) && ! in_array( $editor_id, $backcolor_editor_ids ) ){
 			return $buttons;
 		}
+
+		/* Add buttons */
 		if( fx_editor_get_option( 'backcolor', false ) ){
 			array_splice( $buttons, 4, 0, 'backcolor' );
 		}
@@ -104,16 +116,14 @@ class fx_Editor{
 	}
 
 	/**
-	 * Add button to 4th row in editor
+	 * Add button to 4th row in editor: Boxes
 	 * @since 0.1.0
 	 */
-	public function mce_add_buttons_4( $buttons, $editor_id ){
+	public function mce_add_buttons_4_boxes( $buttons, $editor_id ){
 
-		/* Filterable editor ids */
-		$editor_ids = apply_filters( 'fx_editor_editor_ids', array( 'content' ) );
-
-		/* If editor ID not in the list, return */
-		if ( is_array( $editor_ids ) && !in_array( $editor_id, $editor_ids ) ){
+		/* Make editor id filterable. */
+		$boxes_editor_ids = apply_filters( 'fx_editor_boxes_editor_ids', false );
+		if( is_array( $boxes_editor_ids ) && ! in_array( $editor_id, $boxes_editor_ids ) ){
 			return $buttons;
 		}
 
@@ -121,10 +131,42 @@ class fx_Editor{
 		if( fx_editor_get_option( 'boxes', false ) ){
 			array_push( $buttons, 'wpe_addon_boxes' );
 		}
-		/* Buttons */
+
+		return $buttons;
+	}
+
+	/**
+	 * Add button to 4th row in editor: Buttons
+	 * @since 0.1.0
+	 */
+	public function mce_add_buttons_4_buttons( $buttons, $editor_id ){
+
+		/* Make editor id filterable. */
+		$buttons_editor_ids = apply_filters( 'fx_editor_buttons_editor_ids', false );
+		if( is_array( $buttons_editor_ids ) && ! in_array( $editor_id, $buttons_editor_ids ) ){
+			return $buttons;
+		}
+
+		/* Add buttons */
 		if( fx_editor_get_option( 'buttons', false ) ){
 			array_push( $buttons, 'wpe_addon_buttons' );
 		}
+
+		return $buttons;
+	}
+
+	/**
+	 * Add button to 4th row in editor: Columns
+	 * @since 0.1.0
+	 */
+	public function mce_add_buttons_4_columns( $buttons, $editor_id ){
+
+		/* Make editor id filterable. Set to false to enable anywhere. */
+		$columns_editor_ids = apply_filters( 'fx_editor_columns_editor_ids', false );
+		if( is_array( $columns_editor_ids ) && ! in_array( $editor_id, $columns_editor_ids ) ){
+			return $buttons;
+		}
+
 		/* Columns */
 		if( fx_editor_get_option( 'columns', false ) ){
 			array_push( $buttons, 'wpe_addon_col_12_12', 'wpe_addon_col_13_23', 'wpe_addon_col_23_13', 'wpe_addon_col_13_13_13' );

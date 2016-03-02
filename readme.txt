@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: tinymce, editor, wp editor, visual editor, boxes, buttons, columns
 Requires at least: 4.0
 Tested up to: 4.4
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Power-up Your WordPress Visual Editor with Boxes, Buttons, Columns, and more...
 
 == Description ==
 
-**[f(x) Editor](http://genbu.me/plugins/fx-editor/)** is a plugin to enhance your content editing experience by enabling WordPress features such as Page Break and Text Background Color/Highlight.
+**[f(x) Editor](http://genbumedia.com/plugins/fx-editor/)** is a plugin to enhance your content editing experience by enabling WordPress features such as Page Break and Text Background Color/Highlight.
 
 You can also easily create information boxes, colorful buttons, and columns to make your content richer and engage to your audience more.
 
@@ -29,7 +29,7 @@ After installation of this plugin, you can enable each features by navigating to
 1. Switch paragraph to BR(line break).
 1. Easy to use. No shortcode to remember.
 1. The GPL v2.0 or later license. :) Use it to make something cool.
-1. Support available at [Genbu Media](https://genbu.me/contact/).
+1. Support available at [Genbu Media](https://genbumedia.com/contact/).
 
 
 == Installation ==
@@ -69,15 +69,23 @@ If a little trickier, you need to press "Enter" twice 2 times. That's 4 times. T
 
 == Changelog ==
 
-= 1.0.1 - 3 Feb 2015 =
+= 1.1.0 - 2 March 2016 =
+* New option: enable only for "content" editor (default: true).
+* Each buttons editor ids now filterable. this will allow dev to fine tune where the buttons appear.
+* Delete options in database on plugin uninstall.
+
+= 1.0.1 - 3 Feb 2016 =
 * Update language stings, language POT file.
 * Check version using WP version instead of tinyMCE version. (use min 4.3)
 * Add admin notice for minimum requirements.
 
-= 1.0.0 - 2 Feb 2015 =
+= 1.0.0 - 2 Feb 2016 =
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Enable features in all editor instance.
 
 = 1.0.1 =
 Minor fix. Language files.
