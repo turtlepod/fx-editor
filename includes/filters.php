@@ -10,6 +10,7 @@ add_filter( 'fx_editor_backcolor_editor_ids', 'fx_editor_force_content_only', 5 
 add_filter( 'fx_editor_boxes_editor_ids', 'fx_editor_force_content_only', 5 );
 add_filter( 'fx_editor_buttons_editor_ids', 'fx_editor_force_content_only', 5 );
 add_filter( 'fx_editor_columns_editor_ids', 'fx_editor_force_content_only', 5 );
+add_filter( 'fx_editor_coder_editor_ids', 'fx_editor_force_content_only', 5 );
 
 /**
  * Force visual editor feature only for content.

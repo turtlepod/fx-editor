@@ -105,6 +105,9 @@ class fx_Editor_Settings{
 		/* Columns */
 		$new_data['columns'] = ( isset( $data['columns'] ) && 1 == $data['columns'] ) ? true : false ;
 
+		/* Coder */
+		$new_data['coder'] = ( isset( $data['coder'] ) && 1 == $data['coder'] ) ? true : false ;
+
 		/* Page Break */
 		$new_data['wp_page'] = ( isset( $data['wp_page'] ) && 1 == $data['wp_page'] ) ? true : false ;
 
@@ -182,6 +185,8 @@ class fx_Editor_Settings{
 		<p><label for="fx_editor_buttons"><input type="checkbox" value="1" id="fx_editor_buttons" name="<?php echo esc_attr( $this->option_name . '[buttons]' );?>" <?php checked( fx_editor_get_option( 'buttons', false ) ); ?>> <?php _ex( 'Buttons.', 'settings page', 'fx-editor' );?></label></p>
 
 		<p><label for="fx_editor_columns"><input type="checkbox" value="1" id="fx_editor_columns" name="<?php echo esc_attr( $this->option_name . '[columns]' );?>" <?php checked( fx_editor_get_option( 'columns', false ) ); ?>> <?php _ex( 'Columns.', 'settings page', 'fx-editor' );?></label></p>
+
+		<p><label for="fx_editor_coder"><input type="checkbox" value="1" id="fx_editor_coder" name="<?php echo esc_attr( $this->option_name . '[coder]' );?>" <?php checked( fx_editor_get_option( 'coder', false ) ); ?>> <?php _ex( 'Coder.', 'settings page', 'fx-editor' );?></label></p>
 
 	<?php
 	}

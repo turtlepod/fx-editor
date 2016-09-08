@@ -1,0 +1,143 @@
+body pre{
+	font-size: 14px;
+	line-height: 20px;
+	padding: 20px;
+	background-color: #eee;
+	background-size: 40px 40px;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+	background-image: -ms-linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+	background-image: -o-linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+}
+body pre code{
+	font-size: 14px;
+	line-height: 20px;
+	background: transparent;
+}
+/**
+ * Google Prettify CSS
+******************************************/
+body pre.prettyprinted{
+	border: none;
+	padding: 20px;
+	padding-left: 85px;
+}
+/* Line Number */
+body pre.prettyprinted.linenums ol.linenums{
+	color: #ccc;
+	margin: 0 0 0 65px;
+	padding: 0;
+}
+body pre.prettyprinted.linenums{
+	padding-left: 0;
+}
+body pre.prettyprinted.linenums li{
+	padding-left: 20px;
+	margin-left: 0;
+	background: transparent;
+	border-left: 1px solid #ccc;
+}
+body pre.prettyprinted.linenums li.L0,
+body pre.prettyprinted.linenums li.L1,
+body pre.prettyprinted.linenums li.L2,
+body pre.prettyprinted.linenums li.L3,
+body pre.prettyprinted.linenums li.L5,
+body pre.prettyprinted.linenums li.L6,
+body pre.prettyprinted.linenums li.L7,
+body pre.prettyprinted.linenums li.L8{
+	list-style-type: decimal;
+}
+body pre.prettyprinted .pln{
+	color:#000;
+}
+	.lang-css .pln{
+		color: #0080ff;
+	}
+body pre.prettyprinted .kwd{
+	color:#0000ff;
+}
+	body pre.prettyprinted.lang-css .kwd{
+		color: #8080c0;
+	}
+body pre.prettyprinted .pun,
+body pre.prettyprinted .opn,
+body pre.prettyprinted .clo{
+	color:#8000ff;
+}
+	body pre.prettyprinted.lang-css .pun,
+	body pre.prettyprinted.lang-css .opn,
+	body pre.prettyprinted.lang-css .clo{
+		color: #000;
+	}
+body pre.prettyprinted .str{
+	color:#666;
+}
+	body pre.prettyprinted.lang-css .str{
+		color: #000;
+	}
+body pre.prettyprinted .com{
+	color:#008800;
+}
+body pre.prettyprinted .lit{
+	color:#066;
+}
+	body pre.prettyprinted.lang-css .lit{
+		color: #000;
+	}
+body pre.prettyprinted .tag{
+	color:#0000ff;
+}
+body pre.prettyprinted .atn{
+	color:#ff0000;
+}
+body pre.prettyprinted .atv{
+	color:#8000ff;
+}
+body pre.prettyprinted .typ{
+	color:#000;
+}
+body pre.prettyprinted .dec,
+body pre.prettyprinted .var{
+	color:#000;
+}
+body pre.prettyprinted .fun{
+	color:#ff0000;
+}
+
+/* Display language */
+body pre.prettyprinted[class*="lang-"]{
+	padding: 0;
+	position: relative;
+}
+body pre.prettyprinted[class*="lang-"] ol.linenums{
+	margin-top: 20px;
+}
+body pre.prettyprinted[class*="lang-"] ol.linenums li:last-child{
+	padding-bottom:20px;
+}
+body pre.prettyprinted[class*="lang-"]:before{
+	content: "</>";
+	text-align: center;
+	color: #fff;
+	background: #ccc;
+	padding-right: 0;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 66px;
+	height: 20px;
+}
+body pre.prettyprinted.lang-js:before{
+	content: "JS";
+}
+body pre.prettyprinted.lang-css:before{
+	content: "CSS";
+}
+body pre.prettyprinted.lang-php:before{
+	content: "PHP";
+}
+body pre.prettyprinted.lang-html:before{
+	content: "HTML";
+}
