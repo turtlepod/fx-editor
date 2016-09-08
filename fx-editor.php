@@ -3,7 +3,7 @@
  * Plugin Name: f(x) Editor
  * Plugin URI: http://genbumedia.com/plugins/fx-editor/
  * Description: Power-up Your WordPress Visual Editor with Boxes, Buttons, Columns, and more... (No Shortcodes).
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: David Chandra Purnama
  * Author URI: http://shellcreeper.com/
  * License: GPLv2
@@ -13,7 +13,7 @@
 **/
 
 /* Plugin Version. */
-define( 'FX_EDITOR_VERSION', '1.1.0' );
+define( 'FX_EDITOR_VERSION', '1.2.0' );
 
 /* Path to plugin directory. */
 define( 'FX_EDITOR_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
@@ -55,54 +55,40 @@ function fx_editor_load(){
 		/* Content Only Filter  */
 		require_once( FX_EDITOR_PATH . 'includes/filters.php' );
 	}
+
+	/* Plugin Action Link */
+	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'fx_editor_plugin_action_links' );
 }
 
-/* Activation hook
------------------------------------------- */
-
-/* Register activation hook. */
-register_activation_hook( __FILE__, 'fx_editor_activation' );
-
-
 /**
- * Runs only when the plugin is activated.
- * @since 0.1.0
+ * Plugin Action Support Link
+ * @since 1.2.0
  */
-function fx_editor_activation() {
-	global $wp_version;
+function fx_editor_plugin_action_links( $links ){
 
-	/* Minimum WP version 4.0 */
-	if ( version_compare( $wp_version, '4.0', '<' ) ) {
-		set_transient( 'fx_editor_min_wp_notice', true, 5 );
+	/* Get current user info */
+	if( function_exists( 'wp_get_current_user' ) ){
+		$current_user = wp_get_current_user();
+	}
+	else{
+		global $current_user;
+		get_currentuserinfo();
 	}
 
-	/* Uninstall plugin */
-	register_uninstall_hook( __FILE__, 'fx_editor_uninstall' );
+	/* Build support url */
+	$support_url = add_query_arg(
+		array(
+			'about'      => urlencode( 'f(x) Editor (v.' . FX_EDITOR_VERSION . ')' ),
+			'sp_name'    => urlencode( $current_user->display_name ),
+			'sp_email'   => urlencode( $current_user->user_email ),
+			'sp_website' => urlencode( home_url() ),
+		),
+		'http://genbumedia.com/contact/'
+	);
+
+	/* Add support link */
+	$links[] = '<a target="_blank" href="' . esc_url( $support_url ) . '">' . __( 'Get Support', 'fx-editor' ) . '</a>';
+
+	return $links;
 }
 
-/**
- * Delete Option when user uninstall (delete) plugin.
- * @since 1.1.0
- */
-function fx_editor_uninstall(){
-	delete_option( 'fx-editor' );
-}
-
-/* Add admin notice */
-add_action( 'admin_notices', 'fx_editor_admin_notice' );
-
-/**
- * Admin Notice on Activation.
- * @since 0.1.0
- */
-function fx_editor_admin_notice(){
-	if( get_transient( 'fx_editor_min_wp_notice' ) ){
-		global $wp_version;
-		?>
-		<div class="error notice is-dismissible">
-			<p><?php echo sprintf( _x( 'You need use at least WordPress version 4.0 to use <strong>f(x) Editor Plugin</strong>. Currently you are using version %s', 'admin notice' , 'fx-editor' ), $wp_version ); ?></p>
-		</div>
-		<?php
-		delete_transient( 'fx_editor_min_wp_notice' );
-	}
-}

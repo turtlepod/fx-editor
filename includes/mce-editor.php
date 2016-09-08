@@ -34,20 +34,19 @@ class fx_Editor{
 		/* Add button to TinyMCE button 2nd Row */
 		add_filter( 'mce_buttons_2', array( $this, 'mce_add_buttons_2_backcolor' ), 1, 2 );
 
+		/* Add button to TinyMCE button 2nd Row */
+		add_filter( 'mce_buttons_3', array( $this, 'mce_add_buttons_3_coder' ), 1, 2 );
+
 		/* Add button to TinyMCE button 4th Row */
 		add_filter( 'mce_buttons_4', array( $this, 'mce_add_buttons_4_boxes' ), 1, 2 );
 		add_filter( 'mce_buttons_4', array( $this, 'mce_add_buttons_4_buttons' ), 1, 2 );
 		add_filter( 'mce_buttons_4', array( $this, 'mce_add_buttons_4_columns' ), 1, 2 );
 
-		/* Only load CSS if custom features (boxes,buttons,columns) are activated. */
-		if( fx_editor_is_custom_feature_active() ){
+		/* Add CSS to TinyMCE Editor */
+		add_filter( 'mce_css', array( $this, 'editor_css' ) );
 
-			/* Add CSS to TinyMCE Editor */
-			add_filter( 'mce_css', array( $this, 'editor_css' ) );
-
-			/* Enqueue stylesheets on front end. */
-			add_action( 'wp_enqueue_scripts', array( $this, 'front_css' ), 1 );
-		}
+		/* Enqueue stylesheets on front end. */
+		add_action( 'wp_enqueue_scripts', array( $this, 'front_scripts' ), 1 );
 
 		/* Before Init: for P to BR */
 		add_filter( 'tiny_mce_before_init', array( $this, 'p_to_br' ) );
@@ -62,15 +61,19 @@ class fx_Editor{
 
 		/* Boxes */
 		if( fx_editor_get_option( 'boxes', false ) ){
-			$plugins['wpe_addon_boxes'] = FX_EDITOR_URL . "js/mce-plugin-boxes.js";
+			$plugins['wpe_addon_boxes'] = FX_EDITOR_URL . "assets/mce-plugins/mce-plugin-boxes.js";
 		}
 		/* Buttons */
 		if( fx_editor_get_option( 'buttons', false ) ){
-			$plugins['wpe_addon_buttons'] = FX_EDITOR_URL . "js/mce-plugin-buttons.js";
+			$plugins['wpe_addon_buttons'] = FX_EDITOR_URL . "assets/mce-plugins/mce-plugin-buttons.js";
 		}
 		/* Columns */
 		if( fx_editor_get_option( 'columns', false ) ){
-			$plugins['wpe_addon_columns'] = FX_EDITOR_URL . "js/mce-plugin-columns.js";
+			$plugins['wpe_addon_columns'] = FX_EDITOR_URL . "assets/mce-plugins/mce-plugin-columns.js";
+		}
+		/* Coder */
+		if( fx_editor_get_option( 'coder', false ) ){
+			$plugins['wpe_addon_coder'] = FX_EDITOR_URL . "assets/mce-plugins/mce-plugin-coder.js";
 		}
 
 		return $plugins;
@@ -112,6 +115,26 @@ class fx_Editor{
 		if( fx_editor_get_option( 'backcolor', false ) ){
 			array_splice( $buttons, 4, 0, 'backcolor' );
 		}
+		return $buttons;
+	}
+
+	/**
+	 * Add button to 3rd row in editor: Coder
+	 * @since 0.1.0
+	 */
+	public function mce_add_buttons_3_coder( $buttons, $editor_id ){
+
+		/* Make editor id filterable. */
+		$coder_editor_ids = apply_filters( 'fx_editor_coder_editor_ids', false );
+		if( is_array( $coder_editor_ids ) && ! in_array( $editor_id, $coder_editor_ids ) ){
+			return $buttons;
+		}
+
+		/* Boxes */
+		if( fx_editor_get_option( 'coder', false ) ){
+			array_push( $buttons, 'wpe_addon_coder_code', 'wpe_addon_coder_pre', 'wpe_addon_coder_html', 'wpe_addon_coder_php', 'wpe_addon_coder_css', 'wpe_addon_coder_js' );
+		}
+
 		return $buttons;
 	}
 
@@ -180,8 +203,13 @@ class fx_Editor{
 	 * @since 0.1.0
 	 */
 	public function editor_css( $mce_css ){
-		if ( apply_filters( 'fx_editor_load_editor_css', true ) ){
-			$mce_css .= ', ' . FX_EDITOR_URL . "css/editor.css";
+		/* Only if buttons, boxes, or columns active */
+		if( fx_editor_is_custom_feature_active() && apply_filters( 'fx_editor_load_editor_css', true ) ){
+			$mce_css .= ', ' . FX_EDITOR_URL . "assets/boxes-buttons-columns/editor.css";
+		}
+		/* Only if coder active */
+		if ( fx_editor_get_option( 'coder', false ) && apply_filters( 'fx_editor_load_coder_editor_css', true ) ){
+			$mce_css .= ', ' . FX_EDITOR_URL . "assets/coder/editor.css";
 		}
 		return $mce_css;
 	}
@@ -190,9 +218,32 @@ class fx_Editor{
 	 * Front-end CSS
 	 * @since 0.1.0
 	 */
-	public function front_css(){
-		if ( apply_filters( 'fx_editor_load_front_css', true ) ){
-			wp_enqueue_style( 'fx-editor-front', FX_EDITOR_URL . "css/front.css", null, FX_EDITOR_VERSION );
+	public function front_scripts(){
+
+		/* Only if buttons, boxes, or columns active */
+		if( fx_editor_is_custom_feature_active() && apply_filters( 'fx_editor_load_front_css', true ) ){
+			wp_enqueue_style( 'fx-editor-front', FX_EDITOR_URL . "assets/boxes-buttons-columns/front.css", array(), FX_EDITOR_VERSION );
+		}
+
+		/* Only if coder active */
+		if ( fx_editor_get_option( 'coder', false ) ){
+
+			/**
+			 * Google Code Prettify
+			 * @link https://github.com/google/code-prettify
+			 */
+			wp_register_style( 'google-code-prettify', FX_EDITOR_URL . "assets/google-code-prettify/prettify.min.css", array(), '20150428' );
+			wp_register_script( 'google-code-prettify', FX_EDITOR_URL . "assets/google-code-prettify/prettify.min.js", array(), '20150428', false );
+
+			/* Coder CSS */
+			if ( apply_filters( 'fx_editor_load_coder_front_css', true ) ){
+				wp_enqueue_style( 'fx-editor-coder', FX_EDITOR_URL . "assets/coder/front.css", array( 'google-code-prettify' ), FX_EDITOR_VERSION );
+			}
+
+			/* Coder JS */
+			if ( apply_filters( 'fx_editor_load_coder_front_js', true ) ){
+				wp_enqueue_script( 'fx-editor-coder', FX_EDITOR_URL . "assets/coder/front.js", array( 'google-code-prettify', 'jquery' ), FX_EDITOR_VERSION, true );
+			}
 		}
 	}
 

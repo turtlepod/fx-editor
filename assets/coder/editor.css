@@ -1,0 +1,48 @@
+body#tinymce pre{
+	font-size: 14px;
+	border: none;
+	line-height: 20px;
+	padding: 20px;
+	background-color: #eee;
+	background-size: 40px 40px;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+	background-image: -ms-linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+	background-image: -o-linear-gradient(rgba(255, 255, 255, 0.5) 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0));
+}
+body#tinymce pre code{
+	font-size: 14px;
+	line-height: 20px;
+	border: none;
+	background: transparent;
+}
+/* Display language */
+body#tinymce pre[class*="lang-"]{
+	position: relative;
+}
+body#tinymce pre[class*="lang-"]:before{
+	content: "</>";
+	text-align: center;
+	color: #fff;
+	background: #ccc;
+	padding-right: 0;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 66px;
+	height: 20px;
+}
+body#tinymce pre.lang-js:before{
+	content: "JS";
+}
+body#tinymce pre.lang-css:before{
+	content: "CSS";
+}
+body#tinymce pre.lang-php:before{
+	content: "PHP";
+}
+body#tinymce pre.lang-html:before{
+	content: "HTML";
+}

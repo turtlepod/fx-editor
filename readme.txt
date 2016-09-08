@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: tinymce, editor, wp editor, visual editor, boxes, buttons, columns
 Requires at least: 4.0
 Tested up to: 4.6
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Power-up Your WordPress Visual Editor with Boxes, Buttons, Columns, and more...
 
 You can also easily create information boxes, colorful buttons, and columns to make your content richer and engage to your audience more.
 
-After installation of this plugin, you can enable each features by navigating to "Settings > Editor" menu in your administration panel.
+After installation of this plugin, you can enable each features by navigating to "Settings > Visual Editor" menu in your administration panel.
 
 **Features:**
 
@@ -38,13 +38,13 @@ After installation of this plugin, you can enable each features by navigating to
 2. To install directly from WordPress.org repository, search the plugin name in the search box and click "Install Now" button to install the plugin.
 3. To install from plugin .zip file, click "Upload Plugin" button in "Plugins > Add New" Screen. Browse the plugin .zip file, and click "Install Now" button.
 4. Activate the plugin.
-5. Navigate to "Settings > Editor" page in your admin panel to manage the plugin settings.
+5. Navigate to "Settings > Visual Editor" page in your admin panel to manage the plugin settings.
 
 == Frequently Asked Questions ==
 
 = Where is the settings ? =
 
-The settings is available at "Settings > Editor" page.
+The settings is available at "Settings > Visual Editor" page.
 
 = How to disable/override the CSS? =
 
@@ -66,8 +66,18 @@ If a little trickier, you need to press "Enter" twice 2 times. That's 4 times. T
 4. Columns.
 5. Text background Color.
 6. Line Break.
+7. Coder Module.
+8. Coder Front View.
 
 == Changelog ==
+
+= 1.2.0 - 8 Sep 2016 =
+* Remove WP 4.0 required notice.
+* Move uninstall function to uninstall.php file for easier maintenance.
+* Remove activation hook function.
+* Change assets folder structure
+* Add "Coder" Module using google pretify.
+* Add support url in plugin action link.
 
 = 1.1.0 - 2 March 2016 =
 * New option: enable only for "content" editor (default: true).
@@ -83,6 +93,9 @@ If a little trickier, you need to press "Enter" twice 2 times. That's 4 times. T
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+New Coder Module.
 
 = 1.1.0 =
 Enable features in all editor instance.
@@ -120,3 +133,9 @@ To disable the back-end/editor CSS, add this code in your theme functions.php:
 `add_filter( 'fx_editor_load_editor_css', '__return_false' );`
 
 And then you can copy the CSS "css/editor.css" to your theme editor styles and make adjustment as needed. Note: You need to make sure all the needed elements such as "remove icon" and "columns info" are styled properly to make sure user can properly edit the content.
+
+For coder module, there are separate filters to disable it:
+
+`add_filter( 'fx_editor_load_coder_editor_css', '__return_false' );
+add_filter( 'fx_editor_load_coder_front_css', '__return_false' );
+add_filter( 'fx_editor_load_coder_front_js', '__return_false' );`
