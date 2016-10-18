@@ -25,6 +25,7 @@ After installation of this plugin, you can enable each features by navigating to
 1. Create buttons (White, Black, Red, Green, Blue) via visual editor.
 1. Create columns ( up to 3 columns: "1/2 - 1/2" ; "1/3 - 2/3" ; "2/3 - 1/3" ; "1/3 - 1/3 - 1/3" ) via visual editor.
 1. Add page break button.
+1. Add line break &lt;br/&gt; button.
 1. Enable text background color option (not only text color).
 1. Switch paragraph to BR(line break).
 1. Easy to use. No shortcode to remember.
@@ -68,8 +69,12 @@ If a little trickier, you need to press "Enter" twice 2 times. That's 4 times. T
 6. Line Break.
 7. Coder Module.
 8. Coder Front View.
+9. Line Break Button.
 
 == Changelog ==
+
+= 1.3.0 - 18 Oct 2016 =
+* Add Line Break Button Feature: In desktop we can add line break using SHIFT + ENTER. But it's not possible on mobile. This line break can make visual editor more user friendly on mobile.
 
 = 1.2.0 - 8 Sep 2016 =
 * Remove WP 4.0 required notice.

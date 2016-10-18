@@ -111,6 +111,9 @@ class fx_Editor_Settings{
 		/* Page Break */
 		$new_data['wp_page'] = ( isset( $data['wp_page'] ) && 1 == $data['wp_page'] ) ? true : false ;
 
+		/* Line Break */
+		$new_data['line_break'] = ( isset( $data['line_break'] ) && 1 == $data['line_break'] ) ? true : false ;
+
 		/* Highlights */
 		$new_data['backcolor'] = ( isset( $data['backcolor'] ) && 1 == $data['backcolor'] ) ? true : false ;
 
@@ -199,6 +202,8 @@ class fx_Editor_Settings{
 	?>
 
 		<p><label for="fx_editor_wp_page"><input type="checkbox" value="1" id="fx_editor_wp_page" name="<?php echo esc_attr( $this->option_name . '[wp_page]' );?>" <?php checked( fx_editor_get_option( 'wp_page', false ) ); ?>> <?php _ex( 'Page break button.', 'settings page', 'fx-editor' );?></label></p>
+
+		<p><label for="fx_editor_line_break"><input type="checkbox" value="1" id="fx_editor_line_break" name="<?php echo esc_attr( $this->option_name . '[line_break]' );?>" <?php checked( fx_editor_get_option( 'line_break', false ) ); ?>> <?php _ex( 'Line break button &lt;br/&gt;.', 'settings page', 'fx-editor' );?></label></p>
 
 		<p><label for="fx_editor_backcolor"><input type="checkbox" value="1" id="fx_editor_backcolor" name="<?php echo esc_attr( $this->option_name . '[backcolor]' );?>" <?php checked( fx_editor_get_option( 'backcolor', false ) ); ?>> <?php _ex( 'Background color (text highlight).', 'settings page', 'fx-editor' );?></label></p>
 

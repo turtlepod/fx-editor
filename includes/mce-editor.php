@@ -29,6 +29,7 @@ class fx_Editor{
 		add_filter( 'mce_external_plugins', array( $this, 'register_mce_external_plugins' ) );
 
 		/* Add button to TinyMCE button 1st Row */
+		add_filter( 'mce_buttons', array( $this, 'mce_add_buttons_1_line_break' ), 1, 2 );
 		add_filter( 'mce_buttons', array( $this, 'mce_add_buttons_1_wp_page' ), 1, 2 );
 
 		/* Add button to TinyMCE button 2nd Row */
@@ -75,8 +76,31 @@ class fx_Editor{
 		if( fx_editor_get_option( 'coder', false ) ){
 			$plugins['wpe_addon_coder'] = FX_EDITOR_URL . "assets/mce-plugins/mce-plugin-coder.js";
 		}
+		/* Line Break */
+		if( fx_editor_get_option( 'line_break', false ) ){
+			$plugins['wpe_line_break'] = FX_EDITOR_URL . "assets/mce-plugins/mce-plugin-line-break.js";
+		}
 
 		return $plugins;
+	}
+
+	/**
+	 * Add button to 1st row in editor: Line Break
+	 * @since 1.3.0
+	 */
+	public function mce_add_buttons_1_line_break( $buttons, $editor_id ){
+
+		/* Make editor id filterable. */
+		$line_break_editor_ids = apply_filters( 'fx_editor_line_break_editor_ids', false );
+		if( is_array( $line_break_editor_ids ) && ! in_array( $editor_id, $line_break_editor_ids ) ){
+			return $buttons;
+		}
+
+		/* Add button */
+		if( fx_editor_get_option( 'line_break', false ) ){
+			array_splice( $buttons, 13, 0, 'wpe_line_break' );
+		}
+		return $buttons;
 	}
 
 	/**
@@ -97,6 +121,7 @@ class fx_Editor{
 		}
 		return $buttons;
 	}
+
 
 	/**
 	 * Add button to 2nd row in editor: backcolor
