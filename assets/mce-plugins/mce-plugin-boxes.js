@@ -17,7 +17,11 @@
 	 */
 	function wpe_boxes_inline_setting( e ){
 
-		/* Box */
+		/* Bail if DOM is not set. */
+		if ( typeof tinymce.activeEditor.dom === "undefined" ) {
+			return;
+		}
+
 		var box_element = jQuery( tinymce.activeEditor.dom.select('.wpe-box') );
 
 		/* Add inline setting */
@@ -46,6 +50,11 @@
 	 * ================================================
 	 */
 	function wpe_boxes_do_inline_setting( e ){
+
+		/* Bail if DOM is not set. */
+		if ( typeof tinymce.activeEditor.dom === "undefined" ) {
+			return;
+		}
 
 		/* Column Remove Icon */
 		var box_remove_icon = jQuery( tinymce.activeEditor.dom.select('.wpe-box-remove') );

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: tinymce, editor, wp editor, visual editor, boxes, buttons, columns
 Requires at least: 4.0
 Tested up to: 4.6
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,9 @@ If a little trickier, you need to press "Enter" twice 2 times. That's 4 times. T
 9. Line Break Button.
 
 == Changelog ==
+
+= 1.3.1 - 10 NOv 2016 =
+* Fix bug, check if tinymce DOM not set: Compatibility with f(x) Builder.
 
 = 1.3.0 - 18 Oct 2016 =
 * Add Line Break Button Feature: In desktop we can add line break using SHIFT + ENTER. But it's not possible on mobile. This line break can make visual editor more user friendly on mobile.

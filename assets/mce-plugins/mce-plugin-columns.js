@@ -102,6 +102,11 @@
 	 */
 	function wpe_columns_inline_setting( e ){
 
+		/* Bail if DOM is not set. */
+		if ( typeof tinymce.activeEditor.dom === "undefined" ) {
+			return;
+		}
+
 		/* Column */
 		var col_element = jQuery( tinymce.activeEditor.dom.select('.wpe-col') );
 
@@ -130,6 +135,11 @@
 	 * ================================================
 	 */
 	function wpe_column_do_inline_setting( e ){
+
+		/* Bail if DOM is not set. */
+		if ( typeof tinymce.activeEditor.dom === "undefined" ) {
+			return;
+		}
 
 		/* Column Remove Icon */
 		var col_remove_icon = jQuery( tinymce.activeEditor.dom.select('.wpe-col-remove') );
@@ -173,6 +183,11 @@
 	 * ================================================
 	 */
 	function wpe_columns_fix( e ){
+
+		/* Bail if DOM is not set. */
+		if ( typeof tinymce.activeEditor.dom === "undefined" ) {
+			return;
+		}
 
 		/* Column */
 		var col_element = jQuery( tinymce.activeEditor.dom.select('.wpe-col') );
