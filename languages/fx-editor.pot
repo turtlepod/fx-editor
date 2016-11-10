@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f(x) Login Customizer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-08 09:41+0700\n"
+"POT-Creation-Date: 2016-11-10 10:36+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dave <david.warna@gmail.com>\n"
 "Language-Team: David Chandra P. <david@shellcreeper.com>\n"
@@ -35,49 +35,53 @@ msgstr ""
 msgid "Editor Settings"
 msgstr ""
 
-#: includes/settings.php:150
+#: includes/settings.php:153
 msgctxt "settings page"
 msgid "Custom features"
 msgstr ""
 
-#: includes/settings.php:159
+#: includes/settings.php:162
 msgctxt "settings page"
 msgid "Basic features"
 msgstr ""
 
-#: includes/settings.php:168
+#: includes/settings.php:171
 msgctxt "settings page"
 msgid "Options"
 msgstr ""
 
-#: includes/settings.php:183
+#: includes/settings.php:186
 msgid "Boxes."
 msgstr ""
 
-#: includes/settings.php:185
+#: includes/settings.php:188
 msgid "Buttons."
 msgstr ""
 
-#: includes/settings.php:187
+#: includes/settings.php:190
 msgid "Columns."
 msgstr ""
 
-#: includes/settings.php:189
+#: includes/settings.php:192
 msgid "Coder."
 msgstr ""
 
-#: includes/settings.php:201
+#: includes/settings.php:204
 msgid "Page break button."
 msgstr ""
 
-#: includes/settings.php:203
+#: includes/settings.php:206
+msgid "Line break button &lt;br/&gt;."
+msgstr ""
+
+#: includes/settings.php:208
 msgid "Background color (text highlight)."
 msgstr ""
 
-#: includes/settings.php:205
+#: includes/settings.php:210
 msgid "Switch paragraph to line break (not recommended)."
 msgstr ""
 
-#: includes/settings.php:217
+#: includes/settings.php:222
 msgid "Only enable features in main \"content\" editor."
 msgstr ""
