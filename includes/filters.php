@@ -6,6 +6,7 @@
 
 /* Force to use feature only on content (via settings) */
 add_filter( 'fx_editor_wp_page_editor_ids', 'fx_editor_force_content_only', 5 );
+add_filter( 'fx_editor_underline_editor_ids', 'fx_editor_force_content_only', 5 );
 add_filter( 'fx_editor_backcolor_editor_ids', 'fx_editor_force_content_only', 5 );
 add_filter( 'fx_editor_boxes_editor_ids', 'fx_editor_force_content_only', 5 );
 add_filter( 'fx_editor_buttons_editor_ids', 'fx_editor_force_content_only', 5 );

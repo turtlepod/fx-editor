@@ -3,7 +3,7 @@
  * Plugin Name: f(x) Editor
  * Plugin URI: http://genbumedia.com/plugins/fx-editor/
  * Description: Power-up Your WordPress Visual Editor with Boxes, Buttons, Columns, and more... (No Shortcodes).
- * Version: 1.3.1
+ * Version: 1.4.0
  * Author: David Chandra Purnama
  * Author URI: http://shellcreeper.com/
  * License: GPLv2
@@ -13,7 +13,7 @@
 **/
 
 /* Plugin Version. */
-define( 'FX_EDITOR_VERSION', '1.3.1' );
+define( 'FX_EDITOR_VERSION', '1.4.0' );
 
 /* Path to plugin directory. */
 define( 'FX_EDITOR_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
