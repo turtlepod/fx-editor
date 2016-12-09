@@ -33,6 +33,7 @@ class fx_Editor{
 		add_filter( 'mce_buttons', array( $this, 'mce_add_buttons_1_wp_page' ), 1, 2 );
 
 		/* Add button to TinyMCE button 2nd Row */
+		add_filter( 'mce_buttons_2', array( $this, 'mce_add_buttons_2_underline' ), 1, 2 );
 		add_filter( 'mce_buttons_2', array( $this, 'mce_add_buttons_2_backcolor' ), 1, 2 );
 
 		/* Add button to TinyMCE button 2nd Row */
@@ -124,6 +125,28 @@ class fx_Editor{
 
 
 	/**
+	 * Add button to 2nd row in editor: underline
+	 * @since 1.4.0
+	 * @link https://shellcreeper.com/how-to-add-background-color-highlight-option-in-wordpress-editor-tinymce/
+	 */
+	public function mce_add_buttons_2_underline( $buttons, $editor_id ){
+
+		/* Make editor id filterable. */
+		$underline_editor_ids = apply_filters( 'fx_editor_underline_editor_ids', false );
+		if( is_array( $underline_editor_ids ) && ! in_array( $editor_id, $underline_editor_ids ) ){
+			return $buttons;
+		}
+
+		/* Add underline button */
+		if( fx_editor_get_option( 'underline', false ) ){
+			array_splice( $buttons, 0, 0, 'underline' );
+		}
+
+		return $buttons;
+	}
+
+
+	/**
 	 * Add button to 2nd row in editor: backcolor
 	 * @since 0.1.0
 	 * @link https://shellcreeper.com/how-to-add-background-color-highlight-option-in-wordpress-editor-tinymce/
@@ -136,9 +159,9 @@ class fx_Editor{
 			return $buttons;
 		}
 
-		/* Add buttons */
+		/* Add text background color button */
 		if( fx_editor_get_option( 'backcolor', false ) ){
-			array_splice( $buttons, 4, 0, 'backcolor' );
+			array_splice( $buttons, 3, 0, 'backcolor' );
 		}
 		return $buttons;
 	}
